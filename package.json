@@ -10,10 +10,8 @@
   "keywords": [
     "react-native"
   ],
-  "author": {
-    "name": "Tiziano Munegato"
-  },
-  "license": "MIT",
+  "author": "",
+  "license": "",
   "peerDependencies": {
     "react-native": "^0.41.2"
   }

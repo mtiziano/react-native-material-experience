@@ -53,7 +53,7 @@ export class ActionIcon extends Component {
             padding: 16,
             */
 
-            ...this.props.iconStyle,
+            ...this.props.iconLabelStyle,
           }}>{Platform.OS === 'ios' ? this.props.title : this.props.title.toUpperCase()}</Text>
         }
       </TouchableOpacity>

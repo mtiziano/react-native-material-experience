@@ -107,14 +107,14 @@ export class AppBar extends Component {
           style={{
             position: 'absolute',
             left: 0,
-            top: statusbarHeight,
+            top: this.props.statusBar ? statusbarHeight : 0,
           }}
         /> : null}
 
         <View style={{
           position: 'absolute',
           right: 4,
-          top: statusbarHeight,
+          top: this.props.statusBar ? statusbarHeight : 0,
           flexDirection: 'row',
         }}>
           {this.props.actions ? this.props.actions.map((action, index) => {
@@ -127,6 +127,10 @@ export class AppBar extends Component {
                 onPress={action.onPress}
                 iconStyle={{
                   tintColor: color,
+                  marginHorizontal: 12,
+                }}
+                iconLabelStyle={{
+                  color: color,
                   marginHorizontal: 12,
                 }}
               />
