@@ -8,7 +8,7 @@ const { RNMaterialNavigation } = NativeModules;
 export default RNMaterialNavigation;
 
 
-export { AppBar } from './src/views/AppBar';
+export { AppBar, statusbarHeight, appbarHeight } from './src/views/AppBar';
 export { ActionIcon } from './src/views/ActionIcon';
 export { DrawerItem } from './src/views/DrawerItem';
 export { BottomSheet } from './src/views/BottomSheet';
