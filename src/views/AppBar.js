@@ -43,10 +43,16 @@ export class AppBar extends Component {
     var actionsWidth = this.props.actions ? (this.props.actions.length * 48) : 0
 
     var titlePaddingLeft = 16 + (navigationIcon ? 56 : 0);
-    var titleWidth = display.width - titlePaddingLeft - actionsWidth - 12;
+    var titleWidth = display.width - titlePaddingLeft - actionsWidth - 12 ;
 
     var textAlign = Platform.OS === 'ios' ? 'center' : 'left';
     if(this.props.actions && this.props.actions.length>1) textAlign = 'left';
+
+    // bugfix iOS textAlign center with 0 or 1 action
+    if (Platform.OS === 'ios' && navigationIcon && !(this.props.actions && this.props.actions.length>1)) {
+      if (!this.props.actions || this.props.actions.length < 1) titleWidth -= 48;
+      titleWidth -= 8;
+    }
 
     return (
       <Animated.View style={{
@@ -92,7 +98,6 @@ export class AppBar extends Component {
               textAlign: textAlign,
               ...this.props.headerTitleStyle,
               width: titleWidth,
-              backgroundColor: 'transparent',
             }}
             ellipsizeMode='tail'
             numberOfLines={2}

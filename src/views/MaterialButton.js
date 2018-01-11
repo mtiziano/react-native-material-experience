@@ -39,7 +39,7 @@ export class MaterialButton extends Component {
         <Text style={[{
           textAlign: 'center',
           color: textColor,
-          fontWeight: '500',
+          fontWeight: 'bold',
           fontSize: 14,
         }, this.props.textStyle]}>{title}</Text>
       </TouchableOpacity>
