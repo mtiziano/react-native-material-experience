@@ -34,6 +34,9 @@ export class AppBar extends Component {
       case 'menu':
         navigationIcon = require('../../img/ic_menu_white.png');
         break;
+      case 'close':
+        navigationIcon = require('../../img/ic_close_white.png');
+        break;
     }
     //navigationIcon = require('../../img/ic_arrow_back_white.png');
 
