@@ -13,6 +13,7 @@ export { ActionIcon } from './src/views/ActionIcon';
 export { DrawerItem } from './src/views/DrawerItem';
 export { BottomSheet } from './src/views/BottomSheet';
 export { MaterialButton } from './src/views/MaterialButton';
+export { FloatingActionButton } from './src/views/FloatingActionButton';
 
 export { CoordinatorLayout } from './src/layout/CoordinatorLayout';
 
