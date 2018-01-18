@@ -14,6 +14,24 @@ const display = Dimensions.get('window');
 export const statusbarHeight = Platform.OS == 'ios' ? 20 : (Platform.Version >= 21 ? 24 : 0); // 20 iOS : 24 android
 export const appbarHeight = ( Platform.OS == 'ios' ?  44 : 56 );
 
+/*
+style
+backgroindImageStyle
+headerTitleStyle
+
+backgroundColor
+color
+navigationIcon - arrow_back | menu | close
+statusBar
+backgroundImage
+onNavigationPress
+
+actions [
+  title
+  icon
+  onPress
+]
+*/
 export class AppBar extends Component {
   render() {
     let propStyle = this.props.style ?  this.props.style : {};

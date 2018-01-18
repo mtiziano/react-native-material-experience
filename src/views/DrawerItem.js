@@ -4,43 +4,59 @@ import {
   View,
   Text,
   Image,
+  Button,
   Platform,
   TouchableOpacity,
 } from 'react-native';
 
+import { TouchableRipple } from './TouchableRipple';
+
+/*
+icon
+onPress
+title
+activeColor
+active
+
+style
+titleStyle
+*/
 export class DrawerItem extends Component {
+  static defaultProps = {
+    activeColor: '#2196f3',
+  };
+
   render() {
     let icon = this.props.icon;
 
-    /*
-    this.props.icon ? <Image source={this.props.icon} resizeMode='center' style={{
-      width: 24,
-      height: 24,
-      marginHorizontal: 16,
-      ...this.props.iconStyle,
-    }}/> : null
-    */
+    let tintColor = this.props.active ? this.props.activeColor : '#212121';
 
+    let iconView = (this.props.iconView ? (<View style={{width:24}}>{this.props.iconView}</View>) :
+      (this.props.icon ? (<Image style={{width:24, height:24, tintColor}} source={this.props.icon} resizeMode='contain'/>) : null)
+    );
 
     return (
-      <TouchableOpacity onPress={this.props.onPress} style={{
-        flexDirection: 'row',
-        alignItems: 'center',
-        height: 51,
-        paddingHorizontal: 16,
-        ...this.props.style,
-      }}>
-        {icon ? <View style={{width:24}}>{icon}</View> : null}
-        <Text style={{
-          color: '#212121',
-          marginLeft: icon ? 32 : 0,
-          fontWeight: Platform.select({
-            ios: 'normal',
-            android: 'bold',
-          }),
-          ...this.props.titleStyle,
-        }}>{this.props.title}</Text>
-      </TouchableOpacity>
+      <TouchableRipple onPress={this.props.onPress} delayPressIn={0}>
+        <View style={{
+          flexDirection: 'row',
+          alignItems: 'center',
+          height: 51,
+          paddingHorizontal: 16,
+          backgroundColor: this.props.active ? 'rgba(0, 0, 0, 0.06)' : null,
+          ...this.props.style,
+        }}>
+          {iconView}
+          <Text style={{
+            color: tintColor,
+            marginLeft: icon ? 32 : 0,
+            fontWeight: Platform.select({
+              ios: 'normal',
+              android: 'bold',
+            }),
+            ...this.props.titleStyle,
+          }}>{this.props.title}</Text>
+        </View>
+      </TouchableRipple>
     );
   }
 };

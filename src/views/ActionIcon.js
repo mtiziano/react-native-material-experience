@@ -7,6 +7,15 @@ import {
   Platform,
 } from 'react-native';
 
+/*
+source
+title
+onPress
+
+style
+iconStyle
+iconLabelStyle
+*/
 export class ActionIcon extends Component {
   render() {
     return (

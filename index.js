@@ -14,6 +14,7 @@ export { DrawerItem } from './src/views/DrawerItem';
 export { BottomSheet } from './src/views/BottomSheet';
 export { MaterialButton } from './src/views/MaterialButton';
 export { FloatingActionButton } from './src/views/FloatingActionButton';
+export { TouchableRipple } from './src/views/TouchableRipple';
 
 export { CoordinatorLayout } from './src/layout/CoordinatorLayout';
 
