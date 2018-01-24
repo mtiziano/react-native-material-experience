@@ -44,7 +44,9 @@ export class FloatingActionButton extends Component<{}> {
         shadowOffset: {width: 0, height:3},
         shadowOpacity: 0.3,
         shadowRadius: 6,
-        elevation: 12,
+        elevation: 6,
+        margin: 8,
+        marginBottom: 10,
 
         ...this.props.style
       }}>

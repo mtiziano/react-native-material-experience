@@ -31,6 +31,14 @@ export class MaterialButton extends Component {
 
     let borderRadius = 2;
 
+    let shadowStyle = (this.props.type!=='flat') ? {
+      shadowColor: 'black',
+      shadowOffset: {width: 0, height:2},
+      shadowOpacity: 0.3,
+      shadowRadius: 2,
+      elevation: 2,
+    } : null;
+
     return (
       <TouchableOpacity
         activeOpacity={0.6}
@@ -39,7 +47,7 @@ export class MaterialButton extends Component {
           backgroundColor: bgColor,
           //padding: 8,
           borderRadius,
-        }, this.props.style]}
+        }, shadowStyle, this.props.style]}
       >
 
         <ImageBackground borderRadius={borderRadius} style={{
