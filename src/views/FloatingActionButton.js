@@ -29,6 +29,8 @@ export class FloatingActionButton extends Component<{}> {
     let color = this.props.color ? this.props.color : '#2196f3';
     let size = this.props.mini ? 40 : 56;
 
+    let iconSize = this.props.iconSize ? this.props.iconSize : 24;
+
     return (
       <TouchableOpacity onPress={this.props.onPress} activeOpacity={1} style={{
         width: size,
@@ -46,7 +48,7 @@ export class FloatingActionButton extends Component<{}> {
 
         ...this.props.style
       }}>
-        <Image style={{width:24, height:24}} source={this.props.icon} tintColor={this.props.tintColor}/>
+        <Image style={{width:iconSize, height:iconSize}} source={this.props.icon} tintColor={this.props.tintColor}/>
       </TouchableOpacity>
     );
   }
