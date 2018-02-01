@@ -6,6 +6,7 @@ import {
   Image,
   Modal,
   Platform,
+  Animated,
   Dimensions,
   ScrollView,
   StyleSheet,
@@ -28,15 +29,30 @@ actins [
 ]
 */
 
+const SCALE_FROM = 0.87;
+
 export class MaterialDialog extends Component {
 
   constructor(props) {
     super(props);
 
+    this.scale = new Animated.Value(props.visible ? 1 : SCALE_FROM);
+
     this.state = {
 
     }
 
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if(this.props.visible!==nextProps.visible) {
+      Animated.timing(this.scale, {
+        toValue: nextProps.visible ? 1 : SCALE_FROM,
+        duration: 300,
+        useNativeDriver: true,
+        //easing: Easing.elastic(1.4),
+      }).start();
+    }
   }
 
   renderActions() {
@@ -58,22 +74,26 @@ export class MaterialDialog extends Component {
   }
 
   render() {
+    let animStyle = {
+      transform: [{scale:this.scale}],
+    };
+
     return (
       <Modal
         onRequestClose={this.props.onRequestClose}
-        animationType={'fade'}
+        animationType='fade'
         transparent={true}
         visible={this.props.visible}
         onShow={this.props.onShow}
       >
         <TouchableOpacity style={styles.outer} activeOpacity={1} onPress={this.props.onRequestClose}>
-          <TouchableOpacity style={styles.dialog} activeOpacity={1}>
+          <Animated.View style={[animStyle, styles.dialog]} activeOpacity={1}>
             {this.props.title ? <Text style={styles.title}>{this.props.title}</Text> : null}
             <View style={{maxHeight:alertHeight, borderRadius:0}}>
               {this.props.children}
             </View>
             {this.renderActions()}
-          </TouchableOpacity>
+          </Animated.View>
         </TouchableOpacity>
       </Modal>
     )
