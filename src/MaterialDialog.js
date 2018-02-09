@@ -23,7 +23,8 @@ let alertWidth = width * (Platform.OS==='ios' ? 0.723 : 0.87);
 let alertHeight = height * (Platform.OS==='ios' ? 0.6 : 0.77);
 
 /*
-actins [
+title
+actions [
   title
   onPress
 ]
@@ -66,7 +67,7 @@ export class MaterialDialog extends Component {
           }}>
             <Text style={[styles.dialogButton, {
               width: Platform.OS==='ios' ? alertWidth/this.props.actions.length : null,
-            }]}>{item.title}</Text>
+            }]}>{item.title ? (Platform.OS==='ios' ? item.title : item.title.toUpperCase()) : null}</Text>
           </TouchableRipple>
         ))}
       </View>
