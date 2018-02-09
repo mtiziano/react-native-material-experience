@@ -57,7 +57,8 @@ export class MaterialButton extends Component {
           <Text style={[{
             textAlign: 'center',
             color: textColor,
-            fontWeight: 'bold',
+            fontWeight: Platform.OS === 'ios' ? 'bold' : 'normal', //600 ios
+            fontFamily: Platform.OS==='ios' ? null : 'sans-serif-medium',
             fontSize: 14,
           }, this.props.textStyle]}>{title}</Text>
 
