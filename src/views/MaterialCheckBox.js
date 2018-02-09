@@ -139,55 +139,17 @@ export class MaterialCheckBox extends Component {
         </View>
       </TouchableRipple>
     );
-
-
-    /*
-    const title = this.props.title ? this.props.title : '';
-    const tintColor = this.props.tintColor ? this.props.tintColor : '#2196f3';
-    return (
-      <TouchableRipple
-        onPress={this.props.onValueChange ? ()=>this.props.onValueChange(!this.props.value) : null}
-        {...this.props}
-      >
-        <View style={styles.container}>
-
-          <View style={{width:24, height:24}}>
-            <ART.Surface width={24} height={24}>
-              <Circle cx={12} cy={12} r={10.5} stroke={tintColor} strokeWidth={2.2}/>
-            </ART.Surface>
-
-            <Animated.View style={{
-              position: 'absolute',
-              left: 6.5,
-              top: 6.5,
-              width: 11,
-              height: 11,
-              borderRadius: 5.5,
-              backgroundColor: tintColor,
-              opacity: this.scale,
-              transform: [{scale:this.scale}],
-            }}/>
-          </View>
-
-          <Text style={[styles.label, this.props.labelStyle]}>{this.props.title}</Text>
-        </View>
-      </TouchableRipple>
-    );
-    */
   }
 }
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: 24,
-    paddingVertical: 13,
     flexDirection: 'row',
     alignItems: 'center',
   },
   label: {
     paddingLeft: 24,
     backgroundColor: 'transparent',
-    //paddingVertical: 13,
     fontSize: 19,
     color: '#000000',
   }
