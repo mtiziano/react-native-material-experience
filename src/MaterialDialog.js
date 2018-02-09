@@ -88,12 +88,16 @@ export class MaterialDialog extends Component {
         onShow={this.props.onShow}
       >
         <TouchableOpacity style={styles.outer} activeOpacity={1} onPress={this.props.onRequestClose}>
-          <Animated.View style={[animStyle, styles.dialog]} activeOpacity={1}>
-            {this.props.title ? <Text style={styles.title}>{this.props.title}</Text> : null}
-            <View style={{maxHeight:alertHeight, borderRadius:0}}>
-              {this.props.children}
-            </View>
-            {this.renderActions()}
+          <Animated.View style={[animStyle, styles.dialog]}>
+            <TouchableOpacity activeOpacity={1}>
+              {this.props.title ? <Text style={styles.title}>{this.props.title}</Text> : null}
+              <View style={{maxHeight:alertHeight, borderRadius:0}}>
+                {typeof this.props.children === 'string' ?
+                <Text style={styles.description}>{this.props.children}</Text>
+                : this.props.children}
+              </View>
+              {this.renderActions()}
+            </TouchableOpacity>
           </Animated.View>
         </TouchableOpacity>
       </Modal>
@@ -125,6 +129,14 @@ const styles = StyleSheet.create ({
     textAlign: Platform.OS==='ios' ? 'center' : 'left',
     fontWeight: 'normal', //600 ios
     fontFamily: Platform.OS==='ios' ? null : 'sans-serif-medium',
+  },
+  description: {
+    color: 'black',
+    backgroundColor: 'transparent',
+    fontSize: Platform.OS==='ios' ? 14 : 16,
+    paddingHorizontal: 24,
+    paddingBottom: 32,
+    textAlign: Platform.OS==='ios' ? 'center' : 'left',
   },
   dialogButton: {
     color: Platform.OS==='ios' ? '#017aff' : '#009688',

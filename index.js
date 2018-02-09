@@ -14,6 +14,7 @@ export { DrawerItem } from './src/views/DrawerItem';
 export { BottomSheet } from './src/views/BottomSheet';
 export { MaterialButton } from './src/views/MaterialButton';
 export { RadioButton } from './src/views/RadioButton';
+export { MaterialCheckBox as CheckBox } from './src/views/MaterialCheckBox';
 export { FloatingActionButton } from './src/views/FloatingActionButton';
 export { TouchableRipple } from './src/views/TouchableRipple';
 
