@@ -119,9 +119,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   label: {
-    paddingLeft: 24,
+    paddingLeft: 16,
     backgroundColor: 'transparent',
-    fontSize: 19,
+    fontSize: 18,
     color: '#000000',
   }
 });
