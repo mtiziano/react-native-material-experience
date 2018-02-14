@@ -19,17 +19,18 @@ style
 onPress
 */
 
-export class FloatingActionButton extends Component<{}> {
+export class FloatingActionButton extends Component {
 
   constructor(props) {
     super(props);
   }
 
   render() {
-    let color = this.props.color ? this.props.color : '#2196f3';
+    let badgeColor = this.props.badgeColor || '#f72c81';
+    let color = this.props.color || '#2196f3';
     let size = this.props.mini ? 40 : 56;
 
-    let iconSize = this.props.iconSize ? this.props.iconSize : 24;
+    let iconSize = this.props.iconSize || 24;
 
     return (
       <TouchableOpacity onPress={this.props.onPress} activeOpacity={1} style={{
@@ -51,6 +52,32 @@ export class FloatingActionButton extends Component<{}> {
         ...this.props.style
       }}>
         <Image style={{width:iconSize, height:iconSize}} source={this.props.icon} tintColor={this.props.tintColor}/>
+
+        {this.props.badge ?
+          <View style={{
+            position: 'absolute',
+            top: 0,
+            right: 0.1,
+            width: this.props.mini ? 10 : 20,
+            height: this.props.mini ? 10: 20,
+            borderRadius: this.props.mini ? 6 : 11,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: badgeColor,
+          }}>
+            <Text
+              style={{
+                color: 'white',
+                fontSize: 11,
+                backgroundColor: 'transparent',
+                fontWeight: Platform.OS === 'ios' ? '600' : 'normal',
+                fontFamily: Platform.OS === 'ios' ? null : 'sans-serif-medium',
+              }}
+              children={this.props.mini ? null : this.props.badge}
+            />
+          </View>
+        :null}
+
       </TouchableOpacity>
     );
   }
