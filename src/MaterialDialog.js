@@ -74,27 +74,42 @@ export class MaterialDialog extends Component {
     );
   }
 
+  renderContent() {
+    if(this.props.loading) return(
+      <View style={{paddingHorizontal:24, alignItems:'center', flexDirection:'row', paddingBottom:16}}>
+        <ActivityIndicator size='large' color={this.props.tintColor}/>
+        <Text style={{fontSize:16, color:'black', marginLeft:16}}>
+          {typeof this.props.children === 'string' ? this.props.children : null}
+        </Text>
+      </View>
+    );
+
+    if(typeof this.props.children === 'string') return (
+      <Text style={styles.description}>{this.props.children}</Text>
+    );
+
+    return this.props.children;
+  }
+
   render() {
-    let animStyle = {
-      transform: [{scale:this.scale}],
-    };
+    const animStyle = {transform: [{scale:this.scale}]};
+
+    const onRequestClose = this.props.cancellable === false ? ()=>{/*do nothing*/} : this.props.onRequestClose;
 
     return (
       <Modal
-        onRequestClose={this.props.onRequestClose}
+        onRequestClose={onRequestClose}
         animationType='fade'
         transparent={true}
         visible={this.props.visible}
         onShow={this.props.onShow}
       >
-        <TouchableOpacity style={styles.outer} activeOpacity={1} onPress={this.props.onRequestClose}>
+        <TouchableOpacity style={styles.outer} activeOpacity={1} onPress={onRequestClose}>
           <Animated.View style={[animStyle, styles.dialog]}>
             <TouchableOpacity activeOpacity={1}>
               {this.props.title ? <Text style={styles.title}>{this.props.title}</Text> : null}
               <View style={{maxHeight:alertHeight, borderRadius:0}}>
-                {typeof this.props.children === 'string' ?
-                <Text style={styles.description}>{this.props.children}</Text>
-                : this.props.children}
+                {this.renderContent()}
               </View>
               {this.renderActions()}
             </TouchableOpacity>

@@ -54,17 +54,24 @@ export class FloatingActionButton extends Component {
         <Image style={{width:iconSize, height:iconSize}} source={this.props.icon} tintColor={this.props.tintColor}/>
 
         {this.props.badge ?
-          <View style={{
+          <View style={[{
             position: 'absolute',
-            top: 0,
-            right: 0.1,
-            width: this.props.mini ? 10 : 20,
-            height: this.props.mini ? 10: 20,
-            borderRadius: this.props.mini ? 6 : 11,
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: badgeColor,
-          }}>
+          }, this.props.mini ? {
+            top: 1,
+            right: 1,
+            width: 10,
+            height: 10,
+            borderRadius: 6,
+          } : {
+            top: 0,
+            right: 0.1,
+            width: 20,
+            height: 20,
+            borderRadius: 11,
+          }]}>
             <Text
               style={{
                 color: 'white',
