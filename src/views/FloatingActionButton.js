@@ -51,7 +51,7 @@ export class FloatingActionButton extends Component {
 
         ...this.props.style
       }}>
-        <Image style={{width:iconSize, height:iconSize}} source={this.props.icon} tintColor={this.props.tintColor}/>
+        <Image style={{width:iconSize, height:iconSize, tintColor:this.props.tintColor}} source={this.props.icon}/>
 
         {this.props.badge ?
           <View style={[{
