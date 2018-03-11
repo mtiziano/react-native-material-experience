@@ -24,6 +24,7 @@ color
 navigationIcon - arrow_back | menu | close
 statusBar
 backgroundImage
+backgroundImageMode - cover | logo
 onNavigationPress
 
 actions [
@@ -59,7 +60,7 @@ export class AppBar extends Component {
     //navigationIcon = require('../../img/ic_arrow_back_white.png');
 
     var height = propStyle.height ? propStyle.height : appbarHeight;
-    if(height<appbarHeight) height=appbarHeight;
+    if(height<appbarHeight) height = appbarHeight;
 
     var actionsWidth = this.props.actions ? (this.props.actions.length * 48) : 0
 
@@ -75,6 +76,11 @@ export class AppBar extends Component {
       titleWidth -= 8;
     }
 
+    // background image
+    let bgImgResizeMode = this.props.backgroundImageMode === 'logo' ? 'contain' : 'cover';
+    let bgImgTop = bgImgResizeMode === 'cover' ? 0 : (this.props.statusBar ? statusbarHeight : 0); 
+    let bgImgHeight = bgPropStyle.height ? bgPropStyle.height : (height + (bgImgResizeMode === 'cover' ? statusbarHeight : 0));
+
     return (
       <Animated.View style={{
         width: display.width,
@@ -88,14 +94,14 @@ export class AppBar extends Component {
 
         {this.props.backgroundImage ? <Animated.Image
           source={this.props.backgroundImage}
-          resizeMode='cover'
+          resizeMode={bgImgResizeMode}
           style={{
             position: 'absolute',
-            top: 0,
+            top: bgImgTop,
             left: 0,
             width: display.width,
             ...bgPropStyle,
-            height: bgPropStyle.height ? bgPropStyle.height : height,
+            height: bgImgHeight,
           }}
         /> : null}
 
