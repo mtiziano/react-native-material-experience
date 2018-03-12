@@ -123,6 +123,7 @@ export class AppBar extends Component {
               fontWeight: Platform.OS === 'ios' ? '600' : '500',
               color: color,
               textAlign: textAlign,
+			  backgroundColor: 'transparent',
               ...this.props.headerTitleStyle,
               width: titleWidth,
             }}
