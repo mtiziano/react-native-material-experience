@@ -33,7 +33,7 @@ export class FloatingActionButton extends Component {
     let iconSize = this.props.iconSize || 24;
 
     return (
-      <TouchableOpacity onPress={this.props.onPress} activeOpacity={1} style={{
+      <TouchableOpacity onPress={this.props.onPress} activeOpacity={0.8} style={{
         width: size,
         height: size,
         borderRadius: 28,
