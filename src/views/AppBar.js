@@ -6,12 +6,22 @@ import {
   Platform,
   Dimensions,
   Image,
-  Text
+  Text,
+  StatusBar
 } from 'react-native';
 import { ActionIcon } from './ActionIcon';
+//import Utils from './';
 
 const display = Dimensions.get('window');
-export const statusbarHeight = Platform.OS == 'ios' ? 20 : (Platform.Version >= 21 ? 24 : 0); // 20 iOS : 24 android
+
+const isIphoneX = (
+    Platform.OS === 'ios' &&
+    !Platform.isPad &&
+    !Platform.isTVOS &&
+    (display.height === 812 || display.width === 812)
+);
+
+export const statusbarHeight = Platform.OS == 'ios' ?  (isIphoneX ? 44 : 20) : (Platform.Version >= 21 ? 24 : 0); // 20 iOS : 24 android
 export const appbarHeight = ( Platform.OS == 'ios' ?  44 : 56 );
 
 /*
@@ -35,6 +45,7 @@ actions [
 */
 export class AppBar extends Component {
   render() {
+
     let propStyle = this.props.style ?  this.props.style : {};
     let bgPropStyle = this.props.backgroundImageStyle ? this.props.backgroundImageStyle : {};
 
