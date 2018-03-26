@@ -6,12 +6,22 @@ import {
   Platform,
   Dimensions,
   Image,
-  Text
+  Text,
+  StatusBar
 } from 'react-native';
 import { ActionIcon } from './ActionIcon';
+//import Utils from './';
 
 const display = Dimensions.get('window');
-export const statusbarHeight = Platform.OS == 'ios' ? 20 : (Platform.Version >= 21 ? 24 : 0); // 20 iOS : 24 android
+
+const isIphoneX = (
+    Platform.OS === 'ios' &&
+    !Platform.isPad &&
+    !Platform.isTVOS &&
+    (display.height === 812 || display.width === 812)
+);
+
+export const statusbarHeight = Platform.OS == 'ios' ?  (isIphoneX ? 44 : 20) : (Platform.Version >= 21 ? 24 : 0); // 20 iOS : 24 android
 export const appbarHeight = ( Platform.OS == 'ios' ?  44 : 56 );
 
 /*
@@ -24,6 +34,7 @@ color
 navigationIcon - arrow_back | menu | close
 statusBar
 backgroundImage
+backgroundImageMode - cover | logo
 onNavigationPress
 
 actions [
@@ -34,6 +45,7 @@ actions [
 */
 export class AppBar extends Component {
   render() {
+
     let propStyle = this.props.style ?  this.props.style : {};
     let bgPropStyle = this.props.backgroundImageStyle ? this.props.backgroundImageStyle : {};
 
@@ -59,7 +71,7 @@ export class AppBar extends Component {
     //navigationIcon = require('../../img/ic_arrow_back_white.png');
 
     var height = propStyle.height ? propStyle.height : appbarHeight;
-    if(height<appbarHeight) height=appbarHeight;
+    if(height<appbarHeight) height = appbarHeight;
 
     var actionsWidth = this.props.actions ? (this.props.actions.length * 48) : 0
 
@@ -75,6 +87,11 @@ export class AppBar extends Component {
       titleWidth -= 8;
     }
 
+    // background image
+    let bgImgResizeMode = this.props.backgroundImageMode === 'logo' ? 'contain' : 'cover';
+    let bgImgTop = bgImgResizeMode === 'cover' ? 0 : (this.props.statusBar ? statusbarHeight : 0); 
+    let bgImgHeight = bgPropStyle.height ? bgPropStyle.height : (height + (bgImgResizeMode === 'cover' ? statusbarHeight : 0));
+
     return (
       <Animated.View style={{
         width: display.width,
@@ -88,14 +105,14 @@ export class AppBar extends Component {
 
         {this.props.backgroundImage ? <Animated.Image
           source={this.props.backgroundImage}
-          resizeMode='cover'
+          resizeMode={bgImgResizeMode}
           style={{
             position: 'absolute',
-            top: 0,
+            top: bgImgTop,
             left: 0,
             width: display.width,
             ...bgPropStyle,
-            height: bgPropStyle.height ? bgPropStyle.height : height,
+            height: bgImgHeight,
           }}
         /> : null}
 
