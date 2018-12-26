@@ -31,6 +31,7 @@ export class TouchableRipple extends Component {
       const { style, ...rest } = this.props;
       return (
         <TouchableNativeFeedback
+          delayPressIn={0}
           {...rest}
           style={null}
           background={TouchableNativeFeedback.Ripple(
